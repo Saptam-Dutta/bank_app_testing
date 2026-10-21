@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard - SecureBank</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="navbar">
+  <a href="dashboard.html" class="brand">SecureBank</a>
+  <div class="nav-links">
+    <a href="dashboard.html" class="active">Dashboard</a>
+    <a href="profile.html">Profile</a>
+    <span id="welcomeMsg" style="color:#cfd8e3; font-size:14px;"></span>
+    <button id="logoutBtn">Logout</button>
+  </div>
+</div>
+
+<div class="container wide">
+
+  <!-- Accounts Section -->
+  <div class="section">
+    <h2>My Accounts</h2>
+    <div id="accountsLoading" class="loading-text">
+      <div class="spinner"></div>
+      Loading accounts...
+    </div>
+    <div id="accountsList" class="hidden"></div>
+    <button id="newAccountBtn" class="secondary hidden" style="width:auto; padding:8px 16px;">+ Open New Account</button>
+  </div>
+
+  <!-- New Account Form (hidden by default) -->
+  <div class="section hidden" id="newAccountSection">
+    <h2>Open New Account</h2>
+    <form id="newAccountForm">
+      <label for="accountType">Account Type</label>
+      <select id="accountType" required>
+        <option value="savings">Savings</option>
+        <option value="current">Current</option>
+      </select>
+
+      <label for="branchSelect">Branch</label>
+      <select id="branchSelect" required></select>
+
+      <button type="submit">Create Account</button>
+    </form>
+    <div id="newAccountError" class="error-msg"></div>
+  </div>
+
+  <!-- Transaction Actions -->
+  <div class="section">
+    <h2>Make a Transaction</h2>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="deposit">Deposit</button>
+      <button class="tab-btn" data-tab="withdraw">Withdraw</button>
+      <button class="tab-btn" data-tab="transfer">Transfer</button>
+    </div>
+
+    <!-- Deposit Form -->
+    <form id="depositForm" class="txn-form">
+      <label for="depositAccount">Account</label>
+      <select id="depositAccount" required></select>
+
+      <label for="depositAmount">Amount</label>
+      <input type="number" id="depositAmount" step="0.01" min="0.01" required>
+
+      <button type="submit">Deposit</button>
+    </form>
+
+    <!-- Withdraw Form -->
+    <form id="withdrawForm" class="txn-form hidden">
+      <label for="withdrawAccount">Account</label>
+      <select id="withdrawAccount" required></select>
+
+      <label for="withdrawAmount">Amount</label>
+      <input type="number" id="withdrawAmount" step="0.01" min="0.01" required>
+
+      <button type="submit">Withdraw</button>
+    </form>
+
+    <!-- Transfer Form -->
+    <form id="transferForm" class="txn-form hidden">
+      <label for="transferFrom">From Account</label>
+      <select id="transferFrom" required></select>
+
+      <label for="transferTo">To Account ID</label>
+      <input type="number" id="transferTo" required placeholder="e.g. 2">
+
+      <label for="transferAmount">Amount</label>
+      <input type="number" id="transferAmount" step="0.01" min="0.01" required>
+
+      <label for="transferDesc">Description</label>
+      <input type="text" id="transferDesc" placeholder="Optional note">
+
+      <button type="submit">Transfer</button>
+    </form>
+
+    <div id="txnError" class="error-msg"></div>
+    <div id="txnSuccess" class="success-msg"></div>
+  </div>
+
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/dashboard.js"></script>
+
+</body>
+</html>

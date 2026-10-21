@@ -1,0 +1,21 @@
+# secrets and local config
+.env
+*.env
+
+# dependencies
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+.pytest_cache/
+
+# test output (regenerated on every run)
+tests/reports/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/

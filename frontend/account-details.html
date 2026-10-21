@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Account Details - SecureBank</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="navbar">
+  <a href="dashboard.html" class="brand">SecureBank</a>
+  <div class="nav-links">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="profile.html">Profile</a>
+    <span id="welcomeMsg" style="color:#cfd8e3; font-size:14px;"></span>
+    <button id="logoutBtn">Logout</button>
+  </div>
+</div>
+
+<div class="container wide">
+
+  <a href="dashboard.html" style="display:inline-block; margin-bottom:16px; color:#14213d; font-weight:600; text-decoration:none;">← Back to Dashboard</a>
+
+  <div id="loadingBox" class="loading-text">
+    <div class="spinner"></div>
+    Loading account details...
+  </div>
+
+  <div id="accountContent" class="hidden">
+
+    <!-- Account Summary -->
+    <div class="section">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+        <div>
+          <h2 id="accountTitle">Account</h2>
+          <div class="meta" id="accountMeta"></div>
+          <span class="badge" id="accountStatusBadge"></span>
+        </div>
+        <div class="balance" id="accountBalance" style="font-size:32px;"></div>
+      </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="section">
+      <h2>Summary</h2>
+      <div style="display:flex; gap:20px; flex-wrap:wrap;">
+        <div class="account-card" style="flex:1; min-width:150px; display:block;">
+          <div class="meta">Total Deposited</div>
+          <div class="balance" style="color:#1e7e34; font-size:20px;" id="totalDeposited">₹0.00</div>
+        </div>
+        <div class="account-card" style="flex:1; min-width:150px; display:block;">
+          <div class="meta">Total Withdrawn</div>
+          <div class="balance" style="color:#b71c1c; font-size:20px;" id="totalWithdrawn">₹0.00</div>
+        </div>
+        <div class="account-card" style="flex:1; min-width:150px; display:block;">
+          <div class="meta">Total Transactions</div>
+          <div class="balance" style="font-size:20px;" id="txnCount">0</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Statement -->
+    <div class="section">
+      <h2>Statement</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Counterparty</th>
+            <th>Amount</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody id="statementBody"></tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <div id="notFoundBox" class="hidden section">
+    <p>Account not found, or it doesn't belong to you.</p>
+  </div>
+
+</div>
+
+<script src="/js/api.js"></script>
+<script src="/js/account-details.js"></script>
+
+</body>
+</html>

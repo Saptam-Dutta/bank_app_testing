@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Profile - SecureBank</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="navbar">
+  <a href="dashboard.html" class="brand">SecureBank</a>
+  <div class="nav-links">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="profile.html" class="active">Profile</a>
+    <span id="welcomeMsg" style="color:#cfd8e3; font-size:14px;"></span>
+    <button id="logoutBtn">Logout</button>
+  </div>
+</div>
+
+<div class="container">
+  <h2>My Profile</h2>
+
+  <form id="profileForm">
+    <label for="name">Full Name</label>
+    <input type="text" id="name" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" disabled style="background:#f4f4f4; color:#888;">
+
+    <label for="phone">Phone</label>
+    <input type="text" id="phone" placeholder="9876543210">
+
+    <label for="role">Account Type</label>
+    <input type="text" id="role" disabled style="background:#f4f4f4; color:#888;">
+
+    <label for="createdAt">Member Since</label>
+    <input type="text" id="createdAt" disabled style="background:#f4f4f4; color:#888;">
+
+    <button type="submit">Save Changes</button>
+  </form>
+
+  <div id="errorMsg" class="error-msg"></div>
+  <div id="successMsg" class="success-msg"></div>
+</div>
+
+<script src="/js/api.js"></script>
+<script src="/js/profile.js"></script>
+
+</body>
+</html>

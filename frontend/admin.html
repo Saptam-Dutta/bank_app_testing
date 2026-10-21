@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin - SecureBank</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="navbar">
+  <a href="admin.html" class="brand">SecureBank Admin</a>
+  <div class="nav-links">
+    <a href="admin.html" class="active">Admin Panel</a>
+    <span id="welcomeMsg" style="color:#cfd8e3; font-size:14px;"></span>
+    <button id="logoutBtn">Logout</button>
+  </div>
+</div>
+
+<div class="container wide">
+
+  <!-- Stats -->
+  <div class="section">
+    <h2>Overview</h2>
+    <div style="display:flex; gap:20px; flex-wrap:wrap;">
+      <div class="account-card" style="flex:1; min-width:150px; display:block;">
+        <div class="meta">Total Users</div>
+        <div class="balance" id="statUsers">—</div>
+      </div>
+      <div class="account-card" style="flex:1; min-width:150px; display:block;">
+        <div class="meta">Total Accounts</div>
+        <div class="balance" id="statAccounts">—</div>
+      </div>
+      <div class="account-card" style="flex:1; min-width:150px; display:block;">
+        <div class="meta">Total Transactions</div>
+        <div class="balance" id="statTxns">—</div>
+      </div>
+      <div class="account-card" style="flex:1; min-width:150px; display:block;">
+        <div class="meta">Total Bank Balance</div>
+        <div class="balance" id="statBalance">—</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabs for admin sections -->
+  <div class="tabs">
+    <button class="admin-tab-btn active" data-tab="users">Users</button>
+    <button class="admin-tab-btn" data-tab="accounts">Accounts</button>
+    <button class="admin-tab-btn" data-tab="transactions">Transactions</button>
+    <button class="admin-tab-btn" data-tab="auditlog">Audit Log</button>
+  </div>
+
+  <!-- Users -->
+  <div class="section admin-panel" id="usersPanel">
+    <h2>All Users</h2>
+    <table>
+      <thead>
+        <tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Role</th><th>Joined</th></tr>
+      </thead>
+      <tbody id="usersBody"></tbody>
+    </table>
+  </div>
+
+  <!-- Accounts -->
+  <div class="section admin-panel hidden" id="accountsPanel">
+    <h2>All Accounts</h2>
+    <table>
+      <thead>
+        <tr><th>ID</th><th>Owner</th><th>Type</th><th>Balance</th><th>Status</th><th>Branch</th><th>Action</th></tr>
+      </thead>
+      <tbody id="accountsBody"></tbody>
+    </table>
+  </div>
+
+  <!-- Transactions -->
+  <div class="section admin-panel hidden" id="transactionsPanel">
+    <h2>All Transactions (latest 200)</h2>
+    <table>
+      <thead>
+        <tr><th>Date</th><th>Type</th><th>From</th><th>To</th><th>Amount</th><th>Status</th></tr>
+      </thead>
+      <tbody id="adminTxnsBody"></tbody>
+    </table>
+  </div>
+
+  <!-- Audit Log -->
+  <div class="section admin-panel hidden" id="auditlogPanel">
+    <h2>Audit Log (latest 200)</h2>
+    <table>
+      <thead>
+        <tr><th>Date</th><th>Account</th><th>Owner</th><th>Action</th><th>Old Balance</th><th>New Balance</th></tr>
+      </thead>
+      <tbody id="auditBody"></tbody>
+    </table>
+  </div>
+
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/admin.js"></script>
+
+</body>
+</html>

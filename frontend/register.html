@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Register - SecureBank</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="navbar">
+  <a href="index.html" class="brand">SecureBank</a>
+  <div class="nav-links">
+    <a href="login.html">Login</a>
+  </div>
+</div>
+
+<div class="container">
+  <h2>Create your account</h2>
+
+  <form id="registerForm">
+    <label for="name">Full Name</label>
+    <input type="text" id="name" required placeholder="John Doe">
+
+    <label for="email">Email</label>
+    <input type="email" id="email" required placeholder="you@example.com">
+
+    <label for="phone">Phone</label>
+    <input type="text" id="phone" placeholder="9876543210">
+
+    <label for="password">Password</label>
+    <input type="password" id="password" required minlength="8" maxlength="72" placeholder="At least 8 characters">
+
+    <button type="submit">Register</button>
+  </form>
+
+  <div id="errorMsg" class="error-msg"></div>
+  <div id="successMsg" class="success-msg"></div>
+
+  <div class="link-row">
+    Already have an account? <a href="login.html">Login here</a>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script>
+document.getElementById('registerForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const phone = document.getElementById('phone').value;
+  const password = document.getElementById('password').value;
+
+  const errorBox = document.getElementById('errorMsg');
+  const successBox = document.getElementById('successMsg');
+  errorBox.style.display = 'none';
+  successBox.style.display = 'none';
+
+  try {
+    await apiRequest('/auth/register', 'POST', { name, email, phone, password }, false);
+    successBox.textContent = 'Registration successful! Redirecting to login...';
+    successBox.style.display = 'block';
+    setTimeout(() => {
+      window.location.href = 'login.html';
+    }, 1500);
+  } catch (err) {
+    errorBox.textContent = err.message;
+    errorBox.style.display = 'block';
+  }
+});
+</script>
+
+</body>
+</html>
