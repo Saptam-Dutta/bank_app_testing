@@ -7,15 +7,15 @@
 </head>
 <body>
 
-<div class="navbar">
+<div class="navbar" role="navigation" aria-label="Main">
   <a href="index.html" class="brand">SecureBank</a>
   <div class="nav-links">
     <a href="register.html">Register</a>
   </div>
 </div>
 
-<div class="container">
-  <h2>Login to your account</h2>
+<div class="container" role="main">
+  <h1>Login to your account</h1>
 
   <form id="loginForm">
     <label for="email">Email</label>
@@ -27,7 +27,7 @@
     <button type="submit">Login</button>
   </form>
 
-  <div id="errorMsg" class="error-msg"></div>
+  <div id="errorMsg" class="error-msg" role="alert"></div>
 
   <div class="link-row">
     Don't have an account? <a href="register.html">Register here</a>
@@ -57,4 +57,4 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
 </script>
 
 </body>
-</html>
+</html>

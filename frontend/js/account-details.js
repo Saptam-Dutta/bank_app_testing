@@ -65,7 +65,7 @@ async function loadAccountDetails() {
     // Render statement rows
     const tbody = document.getElementById('statementBody');
     if (myTxns.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="5" style="color:#777;">No transactions yet.</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="5" style="color:#595959;">No transactions yet.</td></tr>';
     } else {
       tbody.innerHTML = myTxns.map(t => {
         const isOutgoing = t.from_account_id === parseInt(accountId);
@@ -103,4 +103,4 @@ async function loadAccountDetails() {
   }
 }
 
-loadAccountDetails();
+loadAccountDetails();

@@ -22,7 +22,7 @@ python -m playwright install chromium      # downloads the test browser (once, ~
 
 ## Run
 
-Everything (database + API), with an HTML report:
+Everything except the slow load/stress tests (database, API, schema, accessibility, UI), with an HTML report:
 
 ```
 python -m pytest --html=reports\full_report.html --self-contained-html
@@ -31,9 +31,15 @@ python -m pytest --html=reports\full_report.html --self-contained-html
 or double-click `run_all_tests.bat` (venv active). Subsets:
 
 ```
+python -m pytest -m smoke         # smoke test: a few seconds, run it first after every change
 python -m pytest -m database      # database layer only (no Node needed)
 python -m pytest -m api           # API layer only
+python -m pytest -m schema        # API response-shape (contract) tests
 python -m pytest -m ui            # browser UI tests only (Playwright)
+python -m pytest -m accessibility # WCAG / keyboard / screen-reader checks
+python -m pytest -m performance   # load + database-speed tests (Locust, about 1.5 min)
+python -m pytest -m stress        # stress, spike and recovery tests (Locust, about 2.5 min)
+python -m pytest -m "performance or stress" --html=reports\load_stress_report.html --self-contained-html
 python -m pytest test_api_transactions.py -k "TXN_48"     # one test
 ```
 
@@ -62,6 +68,14 @@ python -m pytest test_api_transactions.py -k "TXN_48"     # one test
 | API-ADM | admin endpoints, access control |
 | API-SEC | tokens, injection, hardening |
 | UI | browser tests: landing, register, login, route guards, dashboard, statement, profile, admin panel, XSS |
+| SMK | smoke: server up, DB reachable, core flows work (15 checks, seconds) |
+| SCH | schema / contract: every response validated against a strict JSON Schema (`schemas.py`) |
+| ACC | accessibility: axe-core WCAG 2.1 A/AA scans, landmarks, labels, keyboard, live regions, reflow |
+| PRF | performance / load: 25-user Locust run, hot-account run, idle latency, index use on 50,000 rows |
+| STR | stress / spike: 150-user step stress, 5->100 user spike with recovery probe, request bursts |
+
+`pytest` on its own skips the `performance` and `stress` tests (they are slow and timing-sensitive);
+select them with `-m performance` or `-m stress`. Locust CSVs land in `reports/perf/`.
 
 ## Expected results on the current code
 

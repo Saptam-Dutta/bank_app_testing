@@ -6,6 +6,11 @@ on:
     branches: [main, master]
   pull_request:
   workflow_dispatch:        # lets you press "Run workflow" manually in the Actions tab
+    inputs:
+      run_load_and_stress:
+        description: "Also run the slow load and stress tests (about 4 minutes)"
+        type: boolean
+        default: false
 
 jobs:
   test:
@@ -67,12 +72,24 @@ jobs:
         working-directory: tests
         run: python -m playwright install --with-deps chromium
 
-      - name: Run database, API and UI tests
+      - name: Smoke tests (fail fast if the build is not even alive)
+        working-directory: tests
+        run: python -m pytest -m smoke
+
+      - name: Run database, API, schema, accessibility and UI tests
         working-directory: tests
         run: >
           python -m pytest
           --html=reports/full_report.html --self-contained-html
           --junitxml=reports/junit.xml
+
+      - name: Run load and stress tests (manual runs only)
+        if: github.event_name == 'workflow_dispatch' && inputs.run_load_and_stress
+        working-directory: tests
+        run: >
+          python -m pytest -m "performance or stress"
+          --html=reports/load_stress_report.html --self-contained-html
+          --junitxml=reports/junit_load_stress.xml
 
       - name: Upload test report and screenshots
         if: always()          # keep the report even when tests fail
@@ -82,6 +99,9 @@ jobs:
           path: |
             tests/reports/full_report.html
             tests/reports/junit.xml
+            tests/reports/load_stress_report.html
+            tests/reports/junit_load_stress.xml
+            tests/reports/perf/
             tests/reports/screenshots/
             tests/reports/backend_server.log
           if-no-files-found: ignore

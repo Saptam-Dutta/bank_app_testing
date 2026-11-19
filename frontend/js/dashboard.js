@@ -32,7 +32,7 @@ function renderAccounts() {
   list.innerHTML = '';
 
   if (myAccounts.length === 0) {
-    list.innerHTML = '<p style="color:#777;">No accounts yet. Open one below.</p>';
+    list.innerHTML = '<p style="color:#595959;">No accounts yet. Open one below.</p>';
     return;
   }
 
@@ -223,4 +223,4 @@ document.getElementById('transferForm').addEventListener('submit', async (e) => 
 // INIT
 // ==========================
 loadAccounts();
-loadBranches();
+loadBranches();

@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<div class="navbar">
+<div class="navbar" role="navigation" aria-label="Main">
   <a href="admin.html" class="brand">SecureBank Admin</a>
   <div class="nav-links">
     <a href="admin.html" class="active">Admin Panel</a>
@@ -16,11 +16,11 @@
   </div>
 </div>
 
-<div class="container wide">
+<div class="container wide" role="main">
 
   <!-- Stats -->
   <div class="section">
-    <h2>Overview</h2>
+    <h1>Overview</h1>
     <div style="display:flex; gap:20px; flex-wrap:wrap;">
       <div class="account-card" style="flex:1; min-width:150px; display:block;">
         <div class="meta">Total Users</div>
@@ -52,45 +52,53 @@
   <!-- Users -->
   <div class="section admin-panel" id="usersPanel">
     <h2>All Users</h2>
+    <div class="table-scroll">
     <table>
       <thead>
         <tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Role</th><th>Joined</th></tr>
       </thead>
       <tbody id="usersBody"></tbody>
     </table>
+    </div>
   </div>
 
   <!-- Accounts -->
   <div class="section admin-panel hidden" id="accountsPanel">
     <h2>All Accounts</h2>
+    <div class="table-scroll">
     <table>
       <thead>
         <tr><th>ID</th><th>Owner</th><th>Type</th><th>Balance</th><th>Status</th><th>Branch</th><th>Action</th></tr>
       </thead>
       <tbody id="accountsBody"></tbody>
     </table>
+    </div>
   </div>
 
   <!-- Transactions -->
   <div class="section admin-panel hidden" id="transactionsPanel">
     <h2>All Transactions (latest 200)</h2>
+    <div class="table-scroll">
     <table>
       <thead>
         <tr><th>Date</th><th>Type</th><th>From</th><th>To</th><th>Amount</th><th>Status</th></tr>
       </thead>
       <tbody id="adminTxnsBody"></tbody>
     </table>
+    </div>
   </div>
 
   <!-- Audit Log -->
   <div class="section admin-panel hidden" id="auditlogPanel">
     <h2>Audit Log (latest 200)</h2>
+    <div class="table-scroll">
     <table>
       <thead>
         <tr><th>Date</th><th>Account</th><th>Owner</th><th>Action</th><th>Old Balance</th><th>New Balance</th></tr>
       </thead>
       <tbody id="auditBody"></tbody>
     </table>
+    </div>
   </div>
 
 </div>
@@ -99,4 +107,4 @@
 <script src="js/admin.js"></script>
 
 </body>
-</html>
+</html>

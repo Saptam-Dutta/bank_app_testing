@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<div class="navbar">
+<div class="navbar" role="navigation" aria-label="Main">
   <a href="dashboard.html" class="brand">SecureBank</a>
   <div class="nav-links">
     <a href="dashboard.html" class="active">Dashboard</a>
@@ -17,11 +17,11 @@
   </div>
 </div>
 
-<div class="container wide">
+<div class="container wide" role="main">
 
   <!-- Accounts Section -->
   <div class="section">
-    <h2>My Accounts</h2>
+    <h1>My Accounts</h1>
     <div id="accountsLoading" class="loading-text">
       <div class="spinner"></div>
       Loading accounts...
@@ -45,7 +45,7 @@
 
       <button type="submit">Create Account</button>
     </form>
-    <div id="newAccountError" class="error-msg"></div>
+    <div id="newAccountError" class="error-msg" role="alert"></div>
   </div>
 
   <!-- Transaction Actions -->
@@ -96,8 +96,8 @@
       <button type="submit">Transfer</button>
     </form>
 
-    <div id="txnError" class="error-msg"></div>
-    <div id="txnSuccess" class="success-msg"></div>
+    <div id="txnError" class="error-msg" role="alert"></div>
+    <div id="txnSuccess" class="success-msg" role="status"></div>
   </div>
 
 </div>
@@ -106,4 +106,4 @@
 <script src="js/dashboard.js"></script>
 
 </body>
-</html>
+</html>

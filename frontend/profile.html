@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<div class="navbar">
+<div class="navbar" role="navigation" aria-label="Main">
   <a href="dashboard.html" class="brand">SecureBank</a>
   <div class="nav-links">
     <a href="dashboard.html">Dashboard</a>
@@ -17,8 +17,8 @@
   </div>
 </div>
 
-<div class="container">
-  <h2>My Profile</h2>
+<div class="container" role="main">
+  <h1>My Profile</h1>
 
   <form id="profileForm">
     <label for="name">Full Name</label>
@@ -39,12 +39,12 @@
     <button type="submit">Save Changes</button>
   </form>
 
-  <div id="errorMsg" class="error-msg"></div>
-  <div id="successMsg" class="success-msg"></div>
+  <div id="errorMsg" class="error-msg" role="alert"></div>
+  <div id="successMsg" class="success-msg" role="status"></div>
 </div>
 
 <script src="/js/api.js"></script>
 <script src="/js/profile.js"></script>
 
 </body>
-</html>
+</html>

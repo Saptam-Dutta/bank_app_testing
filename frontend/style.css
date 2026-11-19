@@ -119,6 +119,7 @@ button.secondary:hover {
   padding: 16px 30px;
 }
 
+.topbar h1,
 .topbar h2 {
   color: #fff;
   margin: 0;
@@ -128,7 +129,7 @@ button.secondary:hover {
   width: auto;
   margin: 0;
   padding: 8px 16px;
-  background: #d9534f;
+  background: #c9302c;
 }
 
 .topbar button:hover {
@@ -161,7 +162,7 @@ button.secondary:hover {
 
 .account-card .meta {
   font-size: 13px;
-  color: #777;
+  color: #595959;
 }
 
 .badge {
@@ -200,6 +201,7 @@ th {
 
 .tabs {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 16px;
 }
@@ -268,7 +270,7 @@ th {
   width: auto;
   margin: 0;
   padding: 8px 16px;
-  background: #d9534f;
+  background: #c9302c;
 }
 
 .navbar button:hover {
@@ -348,7 +350,7 @@ th {
   margin-bottom: 10px;
 }
 
-.feature-card h3 {
+.feature-card h2 {
   font-size: 16px;
   margin-bottom: 8px;
   color: #14213d;
@@ -356,7 +358,7 @@ th {
 
 .feature-card p {
   font-size: 13px;
-  color: #777;
+  color: #595959;
 }
 
 /* Loading spinner */
@@ -380,4 +382,9 @@ th {
   color: #999;
   font-size: 14px;
   padding: 20px;
+}
+/* Wide tables scroll inside their own box instead of widening the whole page (WCAG 1.4.10 reflow) */
+.table-scroll {
+  overflow-x: auto;
+  max-width: 100%;
 }
