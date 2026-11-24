@@ -40,7 +40,7 @@ python -m pytest -m accessibility # WCAG / keyboard / screen-reader checks
 python -m pytest -m performance   # load + database-speed tests (Locust, about 1.5 min)
 python -m pytest -m stress        # stress, spike and recovery tests (Locust, about 2.5 min)
 python -m pytest -m "performance or stress" --html=reports\load_stress_report.html --self-contained-html
-python -m pytest test_api_transactions.py -k "TXN_48"     # one test
+python -m pytest api_tests.py -k "TXN_48"     # one test
 ```
 
 ## How it is isolated
@@ -56,6 +56,23 @@ python -m pytest test_api_transactions.py -k "TXN_48"     # one test
 - On a failing UI test a screenshot is saved to `reports/screenshots/`.
 - Your real `bank_app` database is never touched.
 - DB credentials come from `backend/.env`. MySQL must be running; Node must be on PATH.
+
+## One file per kind of testing
+
+| File | Testing type | IDs | Cases |
+|---|---|---|---|
+| `database_tests.py` | Database (constraints, integrity, trigger, transactions, locking, schema) | DB-xxx | 72 |
+| `api_tests.py` | API / backend (auth, accounts, transactions, admin, security) | API-xxx | 324 |
+| `ui_tests.py` | Browser UI (Playwright) | UI-xxx | 103 |
+| `smoke_tests.py` | Smoke | SMK-xx | 15 |
+| `schema_tests.py` | API schema / contract | SCH-xx | 39 |
+| `accessibility_tests.py` | Accessibility (axe-core) | ACC-xx | 36 |
+| `performance_tests.py` | Performance / load (Locust) | PRF-xx | 16 |
+| `stress_tests.py` | Stress / spike / recovery (Locust) | STR-xx | 13 |
+
+Run one file on its own, for example `python -m pytest database_tests.py`.
+Shared support code (not tests): `conftest.py` (fixtures), `config.py`, `helpers.py`, `api_client.py`,
+`ui_client.py`, `schemas.py`, `perf_support.py`, `perf/` (Locust user classes).
 
 ## Test IDs
 
